@@ -8,8 +8,8 @@ const RegisterForm = () => {
       <Input name="Email" placeholder="example@gmail.com" />
       <Input name="Password" placeholder="********" />
       <Input name="Confirm Password" placeholder="********" />
-      <Button type="submit" style="bg-sky-300 hover:bg-sky-400" text="Register" />
-      <LinkAuth text="Login" />
+      <Button type="submit" style="bg-sky-400 hover:bg-sky-500 h-10 px-6 my-4 w-full" text="Register" />
+      <LinkAuth text="Login" link="/login" />
     </>
   )
 }

@@ -1,8 +1,10 @@
-const Button = ({ type, text, style }) => {
+
+const Button = ({ type = "button", text, style, onclick }) => {
   return (
     <button
-      className= {`h-10 px-6 my-4 font-semibold w-full rounded-md border text-slate-900 ${style}`}
+      className={`font-semibold rounded-md text-slate-900 ${style}`}
       type={type}
+      onClick={onclick}
     >
       {text}
     </button>
@@ -10,4 +12,3 @@ const Button = ({ type, text, style }) => {
 };
 
 export default Button;
-

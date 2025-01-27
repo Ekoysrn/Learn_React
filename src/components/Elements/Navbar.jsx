@@ -2,7 +2,7 @@ import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { NavLink } from 'react-router';
 
-const NavProduct = ({ cartItemCount }) => {
+const NavProduct = ({ showBtn }) => {
   return (
     <nav>
       <div className="my-6">
@@ -11,7 +11,7 @@ const NavProduct = ({ cartItemCount }) => {
             <li className="">Home</li>
           </NavLink>
           <li className="hover:bg-slate-600 px-4 w-full text-center rounded-full py-4"><a href="">Product</a></li>
-          <li className="hover:bg-slate-600 px-4 w-full text-center rounded-full py-4"><a href="">Cart</a></li>
+          <li className="hover:bg-slate-600 px-4 w-full text-center rounded-full py-4"><button onClick={showBtn}>Cart</button></li>
         </ul>
       </div>
     </nav>

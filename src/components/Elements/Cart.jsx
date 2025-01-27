@@ -1,4 +1,4 @@
-const Cart = ({ img, name, qty, price, plus, min }) => {
+const Cart = ({ img, name, qty, price, plus, min, del }) => {
 
   return (
     <div className="bg-transparent backdrop-blur-2xl">
@@ -12,7 +12,7 @@ const Cart = ({ img, name, qty, price, plus, min }) => {
         </div>
         <div className="px-4">
           <h1 className="py-2 text-lg font-medium text-slate-800">{name}</h1>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center pb-6">
             <p className="font-medium">${price} x</p>
             <button className="bg-slate-900 text-slate-50 pt-[0px] pb-1 px-2 rounded-sm" onClick={plus}>
               +
@@ -23,6 +23,7 @@ const Cart = ({ img, name, qty, price, plus, min }) => {
             </button>
 
             <p className="font-medium"> = ${price * qty}</p>
+            <button className="font-bold text-red-700 text-2xl absolute right-4 top-0" onClick={del}>x</button>
           </div>
         </div>
       </div>

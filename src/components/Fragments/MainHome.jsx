@@ -1,25 +1,68 @@
 import TaskTextTime from "../Elements/TaskTime";
 import TaskText from "../Elements/TaskText";
+import { useState } from "react";
+
+import InputTask from "../Elements/InputTask";
+import ContainerTodo from "../Elements/CointainerTodo";
 
 const MainHome = ({ children }) => {
+  const [taskId, setTaskId] = useState(0);
+  const [completed , setCompleted] = useState(0);
+  const [text, setText] = useState("");
+  const [todo, setTodo] = useState([]);
+
+
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && text.trim() !== "") {
+      setTodo([
+        {
+          id: taskId,
+          task: text,
+          date : new Date().toLocaleString()
+        },...todo,
+      ]);
+
+      setTaskId(taskId + 1);
+      setText("");
+    }
+  };
+
+  console.log(todo);
+
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleDeleteTask = (id) => {
+    setTodo((prevTodo) => prevTodo.filter((item) => item.id != id));
+    setTaskId(taskId - 1)
+    setCompleted(completed + 1)
+  }
+
   return (
-    <main className="flex-1 p-8">
-      {children}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <div className="flex justify-between">
-          <TaskTextTime time="15" text="Estimated Time" />
-          <TaskText task="3" text="Tasks to be Completed" />
-          <TaskTextTime time="25" text="Time Passes" />
-          <TaskText task="2" text="Tasks Completed" />
+    <>
+      <main className="flex-1 p-8 space-y-6">
+        {children}
+
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-200 dark:border-slate-700">
+          <div className="p-6">
+            <div className="flex justify-around">
+              <TaskText task={taskId} text="Tasks to be Completed" />
+              <TaskText task={completed} text="Tasks Completed" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-8 text-center bg-white shadow-md rounded-lg p-6">
-        <p className="text-gray-500">Tidak ada tugas</p>
-        <button className="mt-4 text-blue-500 hover:underline">
-          Tambahkan tugas
-        </button>
-      </div>
-    </main>
+
+        <InputTask
+          text={text}
+          inputChange={handleInputChange}
+          keyPress={handleKeyPress}
+        />
+
+        <ContainerTodo todo={todo} handleDelete={handleDeleteTask}/>
+      </main>
+    </>
   );
 };
 

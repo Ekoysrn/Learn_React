@@ -23,7 +23,7 @@ const HeaderNavHome = () => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full bg-white shadow-md p-3">
+    <header className="w-full bg-white dark:bg-slate-950 shadow-md p-3">
       <div className="text-sky-400 font-medium flex items-stretch">
         <h3>{email}</h3>
         {email ? (
@@ -63,7 +63,7 @@ const HeaderNavHome = () => {
                 <Button
                   text="logout"
                   type="submit"
-                  style="text-red-400 hover:text-red-500"
+                  style="text-red-400 dark:text-red-500 hover:text-red-500"
                 />
               </form>
             )}

@@ -9,11 +9,11 @@ const Sidebar = () => {
   const location = useLocation()
 
   return (
-    <aside className="w-64 bg-white shadow-md">
+    <aside className="w-64 dark:bg-black dark:text-slate-50  bg-white shadow-md">
     <nav className="mt-4">
       <ul>
         {side.map((item, index) => 
-          <SidebarList key={index} title={item} active={location.pathname === `/${item}` ? 'bg-gray-100' : '' } />
+          <SidebarList key={index} title={item} active={location.pathname === `/${item}` ? 'bg-gray-100 dark:bg-gray-800' : '' } />
         )} 
       </ul>
     </nav>

@@ -3,7 +3,7 @@ import Button from './../Elements/MyButton';
 
 const Card = ({ headerImg, titleBody, descBody, footerPrice, id, handletoCart}) => {
   return (
-      <div className="flex items-center mt-8 justify-center bg-gray-100 h-[70%] rounded-lg max-w-64">
+      <div className="flex items-center mt-8 justify-center bg-gray-400 h-[70%] rounded-lg max-w-64">
         <div className='h-full'>
           <HeaderCard imageUrl={headerImg}/>
           <BodyCard title={titleBody} desc={descBody}/>

@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@variant dark (&:where(.dark, .dark *));
+
 .active-link {
-    background-color: #f3f3f3; /* Warna background untuk link aktif */
+    @apply bg-[#f3f3f3] dark:bg-slate-950;
   }
 
 .nav-Product {

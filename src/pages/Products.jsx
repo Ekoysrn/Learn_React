@@ -7,6 +7,11 @@ import TotalCart from './../components/Elements/TotalCart';
 
 const Products = () => {
   const [cart, setCart] = useState([]);
+  const [show, setShow] = useState(false)
+
+  const handleCartBtn = () => {
+    setShow(!show);
+  }
 
   const addToCart = (id) => {
     const product = iphone.find((item) => item.id === id);
@@ -37,9 +42,14 @@ const Products = () => {
       return total;
   }
 
+
+  const deleteProductCart = (id) => {
+    setCart( prevCart => prevCart.filter(item => item.id != id));
+  }
+
   return (
     <div className="h-full bg-slate-950">
-      <NavProduct />
+      <NavProduct showBtn={handleCartBtn}/>
       <h1 className="text-slate-100 text-xl px-8 font-medium">Product</h1>
       <div className="flex px-4">
         <div className="flex flex-wrap h-screen w-[60%] gap-4 px-4 bg-slate-950">
@@ -58,12 +68,11 @@ const Products = () => {
             );
           })}
         </div>
-        <div className="bg-slate-900 w-[40%] relative">
+        <div className={`bg-slate-900 w-[40%] relative ${show && 'hidden' }`}>
           <h1 className="text-slate-100 text-xl px-4 font-medium my-4">Cart</h1>
           {cart.map((item) => {
             if(!item.id) return null;
             return (
-              <>
                 <Cart
                 key={item.id}
                 img={item.img}
@@ -72,8 +81,8 @@ const Products = () => {
                 qty={item.qty}
                 plus={() => changeProductQuantity(item.id, item.qty + 1)}
                 min={() => changeProductQuantity(item.id, item.qty - 1)}
+                del={() => deleteProductCart(item.id)}
               />
-              </>
             );
           })}
           <TotalCart total={totalPriceCart()}/>

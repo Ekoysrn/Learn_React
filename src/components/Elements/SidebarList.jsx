@@ -9,7 +9,7 @@ const SidebarList = ({ title, active }) => {
           <img src={`/images/${title}.png`} alt="" className="size-6" />
           <span>{title}</span>
         </div>
-        <span className="text-sm text-gray-500">0m 0</span>
+        <span className="text-sm text-gray-500 hidden md:block">0m 0</span>
       </li>
     </NavLink>
   );

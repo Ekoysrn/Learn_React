@@ -4,12 +4,12 @@ import Products from './../../pages/Products';
 
 const side = ["Today", "Tomorrow", "This Week", "Planned", "Completed", "Tasks", "Products"]
 
-const Sidebar = () => {
+const Sidebar = ({hidden}) => {
   
   const location = useLocation()
 
   return (
-    <aside className="w-64 dark:bg-black dark:text-slate-50  bg-white shadow-md">
+    <aside className={`md:w-64 md:block w-full dark:bg-black dark:text-slate-50 bg-white shadow-md ${hidden}`}>
     <nav className="mt-4">
       <ul>
         {side.map((item, index) => 
@@ -18,7 +18,7 @@ const Sidebar = () => {
       </ul>
     </nav>
     <div className="p-4 w-64 absolute bottom-10">
-      <button className="w-full bg-sky-500 text-white py-2 rounded hover:bg-sky-600">
+      <button className="w-full md:block hidden bg-sky-500 text-white py-2 rounded hover:bg-sky-600">
         Buat Proyek
       </button>
     </div>

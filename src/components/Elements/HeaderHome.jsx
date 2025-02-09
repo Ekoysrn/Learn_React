@@ -1,13 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./MyButton";
+import sun from "/sun.svg";
+import moon from "/moon.svg";
+import hamburger from "/hamburger.svg";
+import close from "/close.svg";
+import Sidebar from "./sidebar";
 
-const HeaderNavHome = () => {
+const HeaderNavHome = ({svg, handleSideBar}) => {
   const navigate = useNavigate();
+
+  const [darkMode, setdarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  const handleDarkMode = () => setdarkMode(!darkMode);
 
   const logout = () => {
     navigate("/login");
   };
+
   const email = localStorage.getItem("email");
 
   const handleLogout = (e) => {
@@ -23,8 +41,8 @@ const HeaderNavHome = () => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
-    <header className="w-full bg-white dark:bg-slate-950 shadow-md p-3">
-      <div className="text-sky-400 font-medium flex items-stretch">
+    <header className=" bg-white dark:bg-slate-950 flex box-border justify-between w-full shadow-md p-3">
+      <div className="text-sky-400 relative w-full  font-medium flex items-stretch">
         <h3>{email}</h3>
         {email ? (
           <>
@@ -52,7 +70,7 @@ const HeaderNavHome = () => {
               <form
                 action=""
                 onSubmit={handleLogout}
-                className="bg-transparent backdrop-blur-md p-4 rounded-md w-60 text-center absolute z-10 top-10"
+                className="bg-transparent backdrop-blur-md p-4 rounded-md md:w-60 w-screen text-center absolute z-10 top-10"
               >
                 <p className="text-gray-500 hover:text-gray-600 cursor-pointer">
                   Account
@@ -76,6 +94,38 @@ const HeaderNavHome = () => {
           </>
         )}
       </div>
+      <button className="" onClick={handleDarkMode}>
+        <img
+          src={darkMode ? moon : sun}
+          className="text-sky-500 size-6"
+          alt=""
+        />
+      </button>
+      <button onClick={handleSideBar} className="md:hidden">
+        {!svg ? (
+          <svg
+            className="swap-off"
+            fill={darkMode ? "white" : "black"}
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 512 512"
+          >
+            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+          </svg>
+        ) : (
+          <svg
+            className="swap-on"
+            fill={darkMode ? "white" : "black"}
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 512 512"
+          >
+            <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+          </svg>
+        )}
+      </button>
     </header>
   );
 };
